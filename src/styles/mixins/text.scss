@@ -1,0 +1,10 @@
+@mixin body() {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+@mixin title() {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+

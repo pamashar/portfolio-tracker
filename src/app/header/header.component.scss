@@ -1,0 +1,8 @@
+@use '../../styles/variables.scss' as variables;
+
+header {
+  background-color: variables.$colorBackgroundSecondary;
+  width: 100%;
+  height: fit-content;
+  padding: 12px 0;
+}

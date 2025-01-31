@@ -1,0 +1,22 @@
+@use '../../styles/mixins/elements.scss' as elements;
+@use '../../styles/variables.scss' as variables;
+
+button {
+  @include elements.button('m');
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li button {
+  display: flex;
+  gap: 12px;
+
+  @include elements.button('m');
+
+  &:not(.selected) {
+    background-color: variables.$colorBackgroundSecondary;
+  }
+}

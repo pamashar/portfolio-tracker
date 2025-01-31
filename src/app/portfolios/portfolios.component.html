@@ -1,0 +1,10 @@
+<h2>Portfolios</h2>
+<button>Add new</button>
+<ul>
+  <li *ngFor='let portfolio of portfolios'>
+    <button [class.selected]="portfolio.id === selectedPortfolio.id" type="button" (click)="onSelect(portfolio)">
+      <img src="" alt="{{ portfolio.id }}">
+      <span class="name">{{ portfolio.name }}</span>
+    </button>
+  </li>
+</ul>

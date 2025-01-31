@@ -1,0 +1,29 @@
+@use '../variables.scss' as variables;
+@use './text.scss' as text;
+
+@mixin button($size) {
+  border-radius: variables.$radiusOuter;
+  border: none;
+  background-color: variables.$colorAccent;
+  cursor: pointer;
+
+  @include text.body();
+
+  @if $size == 's' {
+    padding: 6px;
+  } @else if $size == 'm' {
+    padding: 12px;
+  } @else if $size == 'l' {
+    padding: 14px;
+  }
+
+  &:hover {
+    opacity: .8;
+  }
+
+  &:disabled {
+    filter: grayscale(1);
+    opacity: .8;
+    cursor: not-allowed;
+  }
+}

@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --color-accent: rgb(175, 100, 200);
+  --color-background_primary: #e5e5e5;
+  --color-background_secondary: #ccddee;
+  --color-text: #2d2d2d;
+
+  --radius-outer: 8px;
+
+  font-family: sans-serif;
+}
+* {
+  margin: none !important;
+}
+button {
+  border: none;
+  padding: none;
+  margin: none;
+}
