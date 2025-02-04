@@ -1,0 +1,21 @@
+@use '../../styles/variables.scss' as variables;
+
+main {
+  display: flex;
+  gap: 10px;
+}
+
+.portfolios {
+  outline: solid 1px green;
+}
+
+.content {
+  outline: solid 1px red;
+  flex: 1;
+}
+
+@media (max-width: variables.$wM) {
+  main {
+    flex-direction: column;
+  }
+}

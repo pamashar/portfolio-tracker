@@ -7,11 +7,16 @@
 
   --radius-outer: 8px;
 
+  --padding-m: 6px;
+
   font-family: sans-serif;
+
 }
-* {
-  margin: none !important;
+
+body {
+  margin: 0;
 }
+
 button {
   border: none;
   padding: none;

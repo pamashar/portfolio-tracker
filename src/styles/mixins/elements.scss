@@ -11,10 +11,13 @@
 
   @if $size == 's' {
     padding: 6px;
+    max-height: 36px;
   } @else if $size == 'm' {
     padding: 12px;
+    max-height: 48px;
   } @else if $size == 'l' {
     padding: 14px;
+    max-height: 52px;
   }
 
   &:hover {
