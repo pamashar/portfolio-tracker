@@ -1,2 +1,12 @@
-<h2>Portfolio data:</h2>
-<p>portfolio-data</p>
+@if (isNewInvestment) {
+<app-new-investment (cancel)="cancel()" />
+}
+
+<button type="button" (click)="showNewInvestment()">Add investment</button>
+<ul>
+  @for (item of items; track item.id) {
+  <li>
+    <app-investment [investment]="item" />
+  </li>
+  }
+</ul>

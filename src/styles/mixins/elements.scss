@@ -1,27 +1,32 @@
-@use '../variables.scss' as variables;
-@use './text.scss' as text;
+@use 'variables' as variables;
+@use 'mixins/text' as text;
 
-@mixin button($size) {
-  border-radius: variables.$radiusOuter;
-  border: none;
-  background-color: variables.$colorAccent;
+@mixin button($size, $style: 'primary') {
+  border-radius: variables.$radiusM;
+  border: 1px solid variables.$colorAccent;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   @include text.body();
 
   @if $size == 's' {
-    padding: 6px;
+    padding: variables.$paddingS;
     max-height: 36px;
   } @else if $size == 'm' {
-    padding: 12px;
+    padding: variables.$paddingM;
     max-height: 48px;
   } @else if $size == 'l' {
-    padding: 14px;
+    padding: variables.$paddingL;
     max-height: 52px;
   }
 
-  &:hover {
-    opacity: .8;
+  @if $style == 'primary' {
+    background-color: variables.$colorAccent;
+  } @else if $style == 'secondary' {
+  } @else if $style == 'outlined' {
+    background-color: transparent;
   }
 
   &:disabled {
@@ -30,3 +35,31 @@
     cursor: not-allowed;
   }
 }
+
+@mixin input($size) {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$paddingXS;
+
+  input, select {
+    @include text.body();
+    border: solid 1px variables.$colorAccent;
+    border-radius: variables.$radiusM;
+    @if $size == 's' {
+      padding: variables.$paddingS;
+      max-height: 36px;
+    } @else if $size == 'm' {
+      padding: variables.$paddingM;
+      max-height: 48px;
+    } @else if $size == 'l' {
+      padding: variables.$paddingL;
+      max-height: 52px;
+    }
+    &:disabled {
+      filter: grayscale(1);
+      opacity: .8;
+      cursor: not-allowed;
+    }
+  }
+}
+

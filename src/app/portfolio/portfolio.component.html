@@ -1,0 +1,9 @@
+<button
+  type="button"
+  class="item"
+  [class.selected]="isSelected"
+  (click)="onSelect()"
+>
+  <img [src]="'assets/portfolios/' + portfolio.avatarImageName" alt="{{ portfolio.id }}">
+  <span class="name">{{ portfolio.name }}</span>
+</button>

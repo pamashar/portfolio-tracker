@@ -1,0 +1,12 @@
+@use 'variables' as variables;
+@use 'mixins/elements' as elements;
+
+button {
+  @include elements.button('m');
+}
+
+
+ul {
+  gap: variables.$paddingM;
+}
+

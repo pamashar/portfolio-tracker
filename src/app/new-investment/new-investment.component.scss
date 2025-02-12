@@ -1,0 +1,36 @@
+@use 'variables' as variables;
+@use 'mixins/elements' as elements;
+
+.backdrop {
+  backdrop-filter: blur(variables.$paddingS);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+}
+
+dialog {
+  width: 90%;
+  max-width: 30rem;
+  border-radius: variables.$radiusM;
+  border-color: variables.$colorAccent;
+}
+
+.input {
+  @include elements.input('m');
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: variables.$paddingM;
+}
+button {
+  @include elements.button('m');
+
+  &:first-child {
+    @include elements.button('m', 'outlined');
+  }
+}
+

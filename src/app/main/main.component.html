@@ -1,4 +1,25 @@
 <main>
-  <app-portfolios class="portfolios"/>
-  <app-portfolio-data class="content"/>
+  <div class="portfolios">
+    <ul>
+      @for (portfolio of portfolios; track portfolio.id) {
+      <li>
+        <app-portfolio
+          [portfolio]="portfolio"
+          [isSelected]="portfolio.id === selectedPortfolioId"
+          (select)="onSelectPortfolio($event)"
+        />
+      </li>
+      }
+      <li>
+        <button [ngClass]="['item', 'addNew']">Add new</button>
+      </li>
+    </ul>
+  </div>
+  <div class="portfolioData">
+    @if (selectedPortfolioId) {
+    <app-portfolio-data class="content" [selectedPortfolioId]="selectedPortfolioId" />
+    } @else {
+    <p>No portfolio selected</p>
+    }
+  </div>
 </main>

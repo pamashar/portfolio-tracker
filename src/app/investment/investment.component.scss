@@ -1,0 +1,21 @@
+@use 'variables' as variables;
+@use 'mixins/elements' as elements;
+
+.investment {
+  display: flex;
+  align-items: center;
+  gap: variables.$paddingM;
+  padding: variables.$paddingM;
+  border: solid 1px variables.$colorAccent;
+  border-radius: variables.$radiusM;
+}
+
+img {
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+}
+
+button {
+  @include elements.button('s');
+}

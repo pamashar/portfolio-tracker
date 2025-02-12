@@ -1,4 +1,5 @@
 @use '../../styles/variables.scss' as variables;
+@use '../../styles/mixins/elements.scss' as elements;
 
 main {
   display: flex;
@@ -9,13 +10,31 @@ main {
   outline: solid 1px green;
 }
 
-.content {
+.portfolioData {
   outline: solid 1px red;
   flex: 1;
+}
+
+ul {
+  gap: variables.$paddingM;
+}
+
+li {
+  flex-shrink: 0;
+}
+
+
+button {
+  @include elements.button('m');
 }
 
 @media (max-width: variables.$wM) {
   main {
     flex-direction: column;
+  }
+
+  ul {
+    flex-direction: row;
+    overflow-x: auto;
   }
 }

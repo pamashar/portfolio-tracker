@@ -1,0 +1,21 @@
+@use '../../styles/mixins/elements.scss' as elements;
+@use '../../styles/variables.scss' as variables;
+
+.item {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+
+  @include elements.button('m');
+
+  img {
+    width: 1rem;
+    height: 1rem;
+    object-fit: contain;
+  }
+
+  &:not(.selected) {
+    background-color: variables.$colorBackgroundSecondary;
+  }
+
+}
