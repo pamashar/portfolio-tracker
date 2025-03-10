@@ -4,13 +4,16 @@
   </div>
 </div>
 <dialog open>
-  <h2>Add investment</h2>
+  <h2>Add transaction to {{ portfolio.name }}</h2>
   <form>
     <p class="input">
-      <label for="stockName">Stock name</label>
-      <select name="stocks">
+      <label for="stock">Stock name</label>
+      <select name="stock" id="stock" [(ngModel)]="stockIdValue">
+        <option value="" disabled>
+          Choose a stock
+        </option>
         @for (stock of stocks; track stock.id) {
-        <option value="stock.id">
+        <option [ngValue]="stock.id">
           {{ stock.name }}
         </option>
         }
@@ -18,19 +21,23 @@
     </p>
     <p class="input">
       <label for="amount">Amount</label>
-      <input type="number" id="amount" name="amount" />
+      <input type="number" id="amount" name="amount" [(ngModel)]="amountValue"/>
     </p>
     <p class="input">
       <label for="price">Price</label>
-      <input type="number" id="price" name="price" />
+      <input type="number" id="price" name="price" [(ngModel)]="priceValue" />
+    </p>
+    <p class="input">
+      <label for="total">Total</label>
+      <input type="number" id="total" name="total" [(ngModel)]="totalValue" disabled />
     </p>
     <p class="input">
       <label for="date">Date</label>
-      <input type="date" id="date" name="date" />
+      <input type="date" id="date" name="date" [value]="2021-01-20" />
     </p>
     <div class="actions">
       <button (click)="onCancel()" type="button">Cancel</button>
-      <button (click)="onSubmit()" type="submit">Submit</button>
+      <button (click)="onSubmit()" type="submit" [disabled]="!isCorrect">Submit</button>
     </div>
   </form>
 </dialog>

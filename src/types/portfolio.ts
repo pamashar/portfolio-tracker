@@ -13,18 +13,35 @@ type Stock = {
   price: number;
 }
 
+type Transaction = {
+  id: string;
+  portfolioId: Portfolio['id'];
+  stockName: Stock['name'];
+  stockId: Stock['id'];
+  amount: number;
+  price: number;
+  date: string;
+}
+
 type Investment = {
   id: string;
-  name: Stock['name'];
+  stockName: Stock['name'];
   portfolioId: Portfolio['id'];
   stockId: Stock['id'];
   amount: number;
   averagePrice: number;
 }
 
+type NewTransaction = Pick<Transaction, 'amount'|'price'|'portfolioId'|'stockId'|'date'>
+
 export type {
   Portfolio,
-  Investment,
   Stock
+};
+
+export type {
+  Investment,
+  NewTransaction,
+  Transaction,
 };
 

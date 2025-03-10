@@ -28,7 +28,10 @@
         "./src/styles/*"
       ],
       "@/assets/*": [
-        "./assets/"
+        "./assets/*"
+      ],
+      "@/utils/*": [
+        "./src/utils/*"
       ]
     }
   },

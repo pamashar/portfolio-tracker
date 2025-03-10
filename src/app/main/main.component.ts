@@ -13,12 +13,14 @@ import type { Portfolio } from '@/types/portfolio';
   styleUrl:    './main.component.scss'
 })
 export class MainComponent {
-  selectedPortfolioId?: Portfolio['id'];
+  selectedPortfolio: Portfolio = PORTFOLIOS[0];
 
   portfolios: Portfolio[] = PORTFOLIOS;
 
   onSelectPortfolio(id: Portfolio['id']) {
-    this.selectedPortfolioId = id;
+    const portfolio = this.portfolios.find((p: Portfolio) => p.id === id);
+    if (!portfolio) return;
+    this.selectedPortfolio = portfolio;
   }
 
 }

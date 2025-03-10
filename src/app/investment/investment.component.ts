@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
+
 import type { Investment, Stock } from '@/types/portfolio';
+
 import { STOCKS } from '../../data';
-import { NewInvestmentComponent } from '../new-investment/new-investment.component';
 
 @Component({
   selector: 'app-investment',
-  imports: [NewInvestmentComponent],
+  imports: [],
   standalone: true,
   templateUrl: './investment.component.html',
   styleUrl: './investment.component.scss'
