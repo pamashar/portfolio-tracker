@@ -5,6 +5,7 @@ import { NewTransaction, Portfolio, Stock, Transaction } from '@/types/portfolio
 
 import { STOCKS } from '../../data';
 import { roundTo } from '@/utils/numbers';
+import { format } from '@/utils/date';
 
 @Component({
   selector: 'app-new-transaction',
@@ -18,15 +19,19 @@ export class NewTransactionComponent {
   @Output() add = new EventEmitter<NewTransaction>();
 
   stockIdValue: Transaction['stockId']= STOCKS[0].id;
-  amountValue: Transaction['amount'] = 0;
-  priceValue: Transaction['price'] = 0;
+  amountValue: Transaction['amount'] | '' = '';
+  priceValue: Transaction['price'] | '' = '';
   now = new Date(Date.now());
   dateValue = '';
 
   stocks = STOCKS;
 
+  ngOnInit() {
+    this.dateValue = format(new Date(), 'yyyy-MM-dd')
+  }
+
   get isCorrect(): boolean {
-    return Boolean( this.stockIdValue && this.amountValue && this.priceValue && this.dateValue);
+    return Boolean(this.stockIdValue && this.amountValue && this.priceValue && this.dateValue);
   }
 
   get stock(): Stock | undefined {
@@ -34,7 +39,7 @@ export class NewTransactionComponent {
   }
 
   get totalValue() {
-    return roundTo(this.amountValue * this.priceValue, 2);
+    return roundTo((this.amountValue || 0) * (this.priceValue || 0), 2);
   }
 
   onCancel() {
@@ -44,6 +49,8 @@ export class NewTransactionComponent {
   onSubmit() {
     if (!this.portfolio?.id) return;
     if (!this.stock?.id) return;
+    if (!this.amountValue) return;
+    if (!this.priceValue) return;
 
     this.add.emit({
       portfolioId: this.portfolio.id,

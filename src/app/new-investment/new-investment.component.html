@@ -33,7 +33,7 @@
     </p>
     <p class="input">
       <label for="date">Date</label>
-      <input type="date" id="date" name="date" [value]="2021-01-20" />
+      <input type="date" id="date" name="date" [(ngModel)]="dateValue" />
     </p>
     <div class="actions">
       <button (click)="onCancel()" type="button">Cancel</button>

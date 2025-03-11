@@ -58,11 +58,13 @@ export class PortfolioDataComponent {
   addTransaction(newTransaction: NewTransaction) {
     const stock = STOCKS.find((s: Stock) => s.id === newTransaction.stockId);
     if (!stock) return;
+
     this.TRANSACTIONS.push({
       id: crypto.randomUUID(),
       stockName: stock.name,
       ...newTransaction,
     })
+    this.isNewTransaction = false;
   }
 
   get investments(): Investment[] {
