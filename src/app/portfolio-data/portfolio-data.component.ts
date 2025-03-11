@@ -79,8 +79,28 @@ export class PortfolioDataComponent {
         transaction,
       ]
     }
-    console.log(combinedByStock)
-//const sum: {price: Transaction['price'], amount: Transaction['amount']} = {price: 0, amount: 0}
+console.log()
+    for (let stockName in combinedByStock) { // FIX executes every time page updated
+      const arr = combinedByStock[stockName as Transaction['stockName']] // TODO
+      if (!arr) continue;
+
+      const sum = arr.reduce((cur, acc) => {
+        return {
+          price: acc.price += cur.price,
+          amount: acc.amount += cur.amount,
+        }
+      }, { price: 0, amount: 0 })
+
+      const investment: Investment = {
+        amount: sum.amount,
+        averagePrice: sum.price/arr.length,
+        portfolioId: arr[0].portfolioId,
+        stockName: arr[0].stockName,
+        stockId: arr[0].stockId,
+      }
+      result.push(investment)
+    }
+
     return result;
   }
 

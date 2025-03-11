@@ -24,7 +24,6 @@ type Transaction = {
 }
 
 type Investment = {
-  id: string;
   stockName: Stock['name'];
   portfolioId: Portfolio['id'];
   stockId: Stock['id'];

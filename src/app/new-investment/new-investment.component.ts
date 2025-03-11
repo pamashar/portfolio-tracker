@@ -6,6 +6,7 @@ import { NewTransaction, Portfolio, Stock, Transaction } from '@/types/portfolio
 import { STOCKS } from '../../data';
 import { roundTo } from '@/utils/numbers';
 import { format } from '@/utils/date';
+import { convertFromDisplay } from '@/utils/price';
 
 @Component({
   selector: 'app-new-transaction',
@@ -56,7 +57,7 @@ export class NewTransactionComponent {
       portfolioId: this.portfolio.id,
       stockId: this.stock.id,
       amount: this.amountValue,
-      price: this.priceValue,
+      price: convertFromDisplay(this.priceValue),
       date: this.dateValue,
     });
   }

@@ -4,6 +4,9 @@
     {{ investment.stockName }}
   </span>
   <span class="amount">
-    {{ investment.amount }}
+    {{ amountDisplay() }}
+  </span>
+  <span class="averagePrice">
+    {{ averagePriceDisplay() }}
   </span>
 </div>

@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, computed, Input } from '@angular/core';
 
 import type { Investment, Stock } from '@/types/portfolio';
 
 import { STOCKS } from '../../data';
+import { convertToDisplay } from '@/utils/price';
 
 @Component({
   selector: 'app-investment',
@@ -13,6 +14,14 @@ import { STOCKS } from '../../data';
 })
 export class InvestmentComponent {
   @Input({ required: true }) investment!: Investment;
+
+  amountDisplay = computed(() => this.investment.amount);
+  averagePriceDisplay = computed(
+    () => new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(convertToDisplay(this.investment.averagePrice))
+  )
 
   get stock() {
     return  STOCKS.find((s: Stock) => {

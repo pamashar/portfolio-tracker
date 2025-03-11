@@ -4,7 +4,7 @@
 
 <button type="button" (click)="showNewTransaction()">Add transaction</button>
 <ul>
-  @for (investment of investments; track investment.id) {
+  @for (investment of investments; track investment.stockId) {
   <li>
     <app-investment [investment]="investment" />
   </li>
