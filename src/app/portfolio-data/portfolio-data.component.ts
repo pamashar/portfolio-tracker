@@ -22,8 +22,8 @@ export class PortfolioDataComponent {
       portfolioId: PORTFOLIOS[0].id,
       stockId: STOCKS[0].id,
       stockName: "BTC",
-      amount: 0.00123456,
-      price: 5450000,
+      amount: 1,
+      price: 5000000,
       date: new Date('01-01-2025').toLocaleString(),
     },
     {
@@ -79,12 +79,12 @@ export class PortfolioDataComponent {
         transaction,
       ]
     }
-console.log()
-    for (let stockName in combinedByStock) { // FIX executes every time page updated
-      const arr = combinedByStock[stockName as Transaction['stockName']] // TODO
-      if (!arr) continue;
 
-      const sum = arr.reduce((cur, acc) => {
+    for (let stockName in combinedByStock) { // FIX executes every time page updated
+      const filteredByStock = combinedByStock[stockName as Transaction['stockName']] // TODO
+      if (!filteredByStock) continue;
+
+      const sum = filteredByStock.reduce((acc, cur) => {
         return {
           price: acc.price += cur.price,
           amount: acc.amount += cur.amount,
@@ -93,14 +93,16 @@ console.log()
 
       const investment: Investment = {
         amount: sum.amount,
-        averagePrice: sum.price/arr.length,
-        portfolioId: arr[0].portfolioId,
-        stockName: arr[0].stockName,
-        stockId: arr[0].stockId,
+        averagePrice: sum.price/sum.amount,
+        portfolioId: filteredByStock[0].portfolioId,
+        stockName: filteredByStock[0].stockName,
+        stockId: filteredByStock[0].stockId,
       }
+
       result.push(investment)
     }
 
+      console.log(combinedByStock.BTC);
     return result;
   }
 

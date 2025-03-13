@@ -32,7 +32,7 @@ export class NewTransactionComponent {
   }
 
   get isCorrect(): boolean {
-    return Boolean(this.stockIdValue && this.amountValue && this.priceValue && this.dateValue);
+    return Boolean(this.stockIdValue && this.amountValue && typeof this.priceValue === 'number' && this.dateValue);
   }
 
   get stock(): Stock | undefined {
@@ -51,7 +51,7 @@ export class NewTransactionComponent {
     if (!this.portfolio?.id) return;
     if (!this.stock?.id) return;
     if (!this.amountValue) return;
-    if (!this.priceValue) return;
+    if (typeof this.priceValue !== 'number') return;
 
     this.add.emit({
       portfolioId: this.portfolio.id,
