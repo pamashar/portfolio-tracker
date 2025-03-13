@@ -1,12 +1,17 @@
 @if (isNewTransaction && portfolio) {
-<app-new-transaction (cancel)="cancel()" (add)="addTransaction($event)" [portfolio]="portfolio"/>
+  <app-new-transaction (cancel)="cancel()" (add)="addTransaction($event)" [portfolio]="portfolio"/>
 }
 
 <button type="button" (click)="showNewTransaction()">Add transaction</button>
 <ul>
-  @for (investment of investments; track investment.stockId) {
-  <li>
-    <app-investment [investment]="investment" />
-  </li>
+  @for (transaction of TRANSACTIONS; track transaction.id) {
+    <li>
+      <app-transaction [transaction]="transaction" />
+    </li>
+  }
+  @for (investment of investments; track investment.id) {
+    <li>
+      <app-investment [investment]="investment" />
+    </li>
   }
 </ul>

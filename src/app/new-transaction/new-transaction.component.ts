@@ -5,14 +5,14 @@ import { NewTransaction, Portfolio, Stock, Transaction } from '@/types/portfolio
 
 import { STOCKS } from '../../data';
 import { roundTo } from '@/utils/numbers';
-import { format } from '@/utils/date';
+import { formatDate } from '@/utils/date';
 import { convertFromDisplay } from '@/utils/price';
 
 @Component({
   selector: 'app-new-transaction',
   imports: [FormsModule],
-  templateUrl: './new-investment.component.html',
-  styleUrl: './new-investment.component.scss'
+  templateUrl: './new-transaction.component.html',
+  styleUrl: './new-transaction.component.scss'
 })
 export class NewTransactionComponent {
   @Input({ required: true }) portfolio!: Portfolio;
@@ -20,7 +20,7 @@ export class NewTransactionComponent {
   @Output() add = new EventEmitter<NewTransaction>();
 
   stockIdValue: Transaction['stockId']= STOCKS[0].id;
-  amountValue: Transaction['amount'] | '' = '';
+  quantityValue: Transaction['quantity'] | '' = '';
   priceValue: Transaction['price'] | '' = '';
   now = new Date(Date.now());
   dateValue = '';
@@ -28,11 +28,12 @@ export class NewTransactionComponent {
   stocks = STOCKS;
 
   ngOnInit() {
-    this.dateValue = format(new Date(), 'yyyy-MM-dd')
+    const dateStr = formatDate(new Date(), 'yyyy-MM-dd') + 'T' + formatDate(new Date(), 'HH:mm:ss');
+    this.dateValue = dateStr;
   }
 
   get isCorrect(): boolean {
-    return Boolean(this.stockIdValue && this.amountValue && typeof this.priceValue === 'number' && this.dateValue);
+    return Boolean(this.stockIdValue && this.quantityValue && typeof this.priceValue === 'number' && this.dateValue);
   }
 
   get stock(): Stock | undefined {
@@ -40,7 +41,7 @@ export class NewTransactionComponent {
   }
 
   get totalValue() {
-    return roundTo((this.amountValue || 0) * (this.priceValue || 0), 2);
+    return roundTo((this.quantityValue || 0) * (this.priceValue || 0), 2);
   }
 
   onCancel() {
@@ -50,15 +51,15 @@ export class NewTransactionComponent {
   onSubmit() {
     if (!this.portfolio?.id) return;
     if (!this.stock?.id) return;
-    if (!this.amountValue) return;
+    if (!this.quantityValue) return;
     if (typeof this.priceValue !== 'number') return;
 
     this.add.emit({
       portfolioId: this.portfolio.id,
       stockId: this.stock.id,
-      amount: this.amountValue,
+      quantity: this.quantityValue,
       price: convertFromDisplay(this.priceValue),
-      date: this.dateValue,
+      date: formatDate(new Date(this.dateValue)),
     });
   }
 }

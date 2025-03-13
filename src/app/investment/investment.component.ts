@@ -15,7 +15,7 @@ import { convertToDisplay } from '@/utils/price';
 export class InvestmentComponent {
   @Input({ required: true }) investment!: Investment;
 
-  amountDisplay = computed(() => this.investment.amount);
+  quantityDisplay = computed(() => this.investment.quantity);
   averagePriceDisplay = computed(
     () => new Intl.NumberFormat('en-US', {
     style: 'currency',

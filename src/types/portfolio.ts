@@ -18,20 +18,21 @@ type Transaction = {
   portfolioId: Portfolio['id'];
   stockName: Stock['name'];
   stockId: Stock['id'];
-  amount: number;
+  quantity: number;
   price: number;
   date: string;
 }
 
 type Investment = {
+  id: string;
   stockName: Stock['name'];
   portfolioId: Portfolio['id'];
   stockId: Stock['id'];
-  amount: number;
+  quantity: number;
   averagePrice: number;
 }
 
-type NewTransaction = Pick<Transaction, 'amount'|'price'|'portfolioId'|'stockId'|'date'>
+type NewTransaction = Pick<Transaction, 'quantity'|'price'|'portfolioId'|'stockId'|'date'>
 
 export type {
   Portfolio,

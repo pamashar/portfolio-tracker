@@ -5,7 +5,7 @@
       <li>
         <app-portfolio
           [portfolio]="portfolio"
-          [isSelected]="portfolio.id === selectedPortfolio?.id"
+          [isSelected]="portfolio.id === selectedPortfolio.id"
           (select)="onSelectPortfolio($event)"
         />
       </li>
@@ -16,7 +16,7 @@
     </ul>
   </div>
   <div class="portfolioData">
-    @if (selectedPortfolio?.id) {
+    @if (selectedPortfolio.id) {
     <app-portfolio-data class="content" [portfolio]="selectedPortfolio" />
     } @else {
     <p>No portfolio selected</p>
